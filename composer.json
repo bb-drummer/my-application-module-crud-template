@@ -1,0 +1,35 @@
+{
+  "name" : "ZF2CRUDModule",
+  "description" : "standard CRUD module template",
+  "version" : "1.0",
+  "require" : {
+    "php" : ">=5.3.3",
+    "zendframework/zendframework" : "dev-master",
+    "zf-commons/zfc-user" : ">=1.2.2"
+  },
+  "license" : "BSD-3-Clause",
+  "keywords" : [ "ZendFramework2", "zf2", "module", "CRUD", "yourmodname" ],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "master"
+    }
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Yourmodname" : "src/"
+    },
+    "classmap" : [ "./Module.php" ]
+  },
+  "suggest" : { },
+  "scripts" : {
+    "post-install-cmd" : [ ],
+    "post-update-cmd" : [ ]
+  },
+  "type" : "module",
+  "homepage" : "http://git.dragon-projects.de:81/zf2/module-crud-template.git",
+  "authors" : [ {
+    "name" : "Björn Bartels",
+    "email" : "bartels@dragon-projects.net",
+    "homepage" : "http://dragon-projects.net"
+  } ]
+}

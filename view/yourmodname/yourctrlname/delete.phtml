@@ -1,0 +1,31 @@
+<pre class="debuginfo">
+<strong>Module:</strong>     Yourmodname &raquo;
+<strong>Controller:</strong> <?php echo $this->controller ?> &raquo;
+<strong>Action:</strong>     <?php echo $this->action ?>
+</pre>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<label>
+			<span class="panel-title"><?php echo $this->translate("Daten entfernen"); ?></span>
+		</label>
+	</div>
+	<div class="panel-body">
+        <p><?php echo $this->translate("Daten wirklich entfernen?"); ?></p>
+        <p><strong>'<?php echo $this->escapeHtml($yourmodname->col1); ?>' - '<?php echo $this->escapeHtml($yourmodname->extracolumn); ?>'</strong></p>
+        <?php
+        $url = $this->url('yourmodname/yourmodnameedit', array(
+            'action'           => 'delete',
+            'yourmodname_id'   => $yourmodname->yourmodname_id,
+        ));
+        ?>
+        <form action="<?php echo $url; ?>" method="post">
+            <div>
+                <input type="hidden" name="id" value="<?php echo (int) $yourmodname->yourmodname_id; ?>" />
+                <input type="submit" name="del" value="<?php echo $this->translate("entfernen"); ?>" />
+                <input type="submit" name="abort" value="<?php echo $this->translate("abbrechen"); ?>" />
+            </div>
+        </form>	
+    </div>
+</div>
+	

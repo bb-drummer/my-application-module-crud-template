@@ -1,0 +1,32 @@
+<pre class="debuginfo">
+<strong>Module:</strong>     Yourmodname &raquo;
+<strong>Controller:</strong> <?php echo $this->controller ?> &raquo;
+<strong>Action:</strong>     <?php echo $this->action ?>
+</pre>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<label>
+			<span class="panel-title"><?php echo $this->translate("Neue Daten hinzufügen"); ?></span>
+		</label>
+	</div>
+	<div class="panel-body">
+		<?php
+			$form->setAttribute('action', $this->url('yourmodname/yourmodnameedit', array('action' => 'add')));
+			$form->prepare();
+			
+			echo $this->form()->openTag($form);
+			echo $this->formHidden($form->get('yourmodname_id'));
+			echo $this->formRow($form->get('col1'));
+			echo $this->formRow($form->get('extracolumn'));
+			echo '<hr />';
+			echo $this->formRow($form->get('col2'));
+			echo $this->formRow($form->get('col3'));
+			echo '<hr />';
+			echo $this->formRow( $form->get('userid')->setAttributes( array('type' => 'hidden', 'value' => $user->getId()) ) );
+			echo $this->formSubmit($form->get('submit'));
+			echo $this->formReset($form->get('reset'));
+			echo $this->form()->closeTag();
+		?>
+	</div>
+</div>
