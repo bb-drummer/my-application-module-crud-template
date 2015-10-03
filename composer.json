@@ -1,5 +1,5 @@
 {
-  "name" : "[BB] ZF2CRUDModule",
+  "name" : "BB/ZF2CRUDModule",
   "description" : "standard CRUD module template",
   "version" : "1.0",
   "require" : {
