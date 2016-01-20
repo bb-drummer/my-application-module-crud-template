@@ -26,10 +26,31 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
 	
 	protected $yourmodnameTable;
 	
-    protected $serviceManager;
-    protected $serviceLocator;
+	/** @var $serviceLocator \Zend\Di\ServiceLocator */
+	protected static $serviceLocator;
+
+	/** @var $serviceManager \Zend\ServiceManager\ServiceManager */
+	protected static $serviceManager;
 	
-    public function getAutoloaderConfig()
+	public function init(ModuleManager $mm)
+	{
+		$mm->getEventManager()->getSharedManager()->attach(__NAMESPACE__, 'dispatch', function($e) {
+			$oController = $e->getTarget();
+			$sAccept = $oController->getRequest()->getHeaders()->get('Accept')->toString();
+			if ( $oController->getRequest()->isXmlHttpRequest() ) {
+				if ( strpos($sAccept, 'text/html') !== false ) {
+					$oController->layout('layout/ajax');
+				} else {
+					$oController->layout('layout/json');
+				}
+			} else {
+				$oController->layout('layout/layout');
+			}
+		});
+
+	}	
+	
+	public function getAutoloaderConfig()
     {
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
@@ -49,15 +70,29 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function onBootstrap(MvcEvent $e)
-    {
+	public function onBootstrap(MvcEvent $e)
+	{
         // You may not need to do this if you're doing it elsewhere in your
         // application
-        $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
+		$eventManager		= $e->getApplication()->getEventManager();
+		$moduleRouteListener = new ModuleRouteListener();
+		$moduleRouteListener->attach($eventManager);
         $this->setServiceManager($e->getApplication()->getServiceManager());
-    }
+
+		$application = $e->getApplication();
+		/** @var $serviceManager \Zend\ServiceManager\ServiceManager */
+		$serviceManager = $application->getServiceManager();
+
+		// set (form) validator locale
+		$translator = $serviceManager->get('translator');
+		\Zend\Validator\AbstractValidator::setDefaultTranslator($translator, 'default');
+		
+		// override or add a view helper
+		// /** @var $pm \Zend\View\Helper\Navigation\PluginManager */
+		// $pm = $serviceManager->get('ViewHelperManager')->get('Navigation')->getPluginManager();
+		// $pm->setInvokableClass('menu', '\Application\View\Helper\Navigation\Menu');
+		
+	}
 
     public function getServiceConfig()
     {
@@ -78,47 +113,57 @@ class Module implements AutoloaderProviderInterface, ServiceLocatorAwareInterfac
     	);
     }
 
-    /**
-     * Retrieve service manager instance
-     *
-     * @return ServiceManager 
-     */
-    public function getServiceManager()
-    {
-        return $this->serviceManager;
-    }
+	/**
+	 * Set serviceManager instance
+	 *
+	 * @param  ServiceLocatorInterface $serviceLocator
+	 * @return \Admin\Module
+	 */
+	public function setServiceManager($serviceManager)
+	{
+		self::$serviceManager = $serviceManager;
+		return $this;
+	}
 
-    /**
-     * Set service manager instance
-     *
-     * @param ServiceManager $serviceManager
-     * @return User
-     */
-    public function setServiceManager(ServiceManager $serviceManager)
-    {
-        $this->serviceManager = $serviceManager;
-        return $this;
-    }
+	/**
+	 * Retrieve serviceManager instance
+	 *
+	 * @return \Zend\ServiceManager\ServiceManager
+	 */
+	public function getServiceManager()
+	{
+		if (!self::$serviceManager) {
+			
+			self::$serviceManager = new \Zend\ServiceManager\ServiceManager();
+		}
+		return self::$serviceManager;
+	}
+	
+	/**
+	 * Set serviceManager instance
+	 *
+	 * @param  ServiceLocatorInterface $serviceLocator
+	 * @return void
+	 */
+	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+	{
+		self::$serviceLocator = $serviceLocator;
+		return $this;
+	}
 
-    /**
-     * Set serviceManager instance
-     *
-     * @param  ServiceLocatorInterface $serviceLocator
-     * @return void
-     */
-    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-    {
-        $this->serviceLocator = $serviceLocator;
-    }
-
-    /**
-     * Retrieve serviceManager instance
-     *
-     * @return ServiceLocatorInterface
-     */
-    public function getServiceLocator()
-    {
-        return $this->serviceLocator;
-    }
-
+	/**
+	 * Retrieve serviceManager instance
+	 *
+	 * @return \Zend\Di\ServiceLocator
+	 */
+	public function getServiceLocator()
+	{
+		if (!self::$serviceLocator) {
+			self::$serviceLocator = new \Zend\Di\ServiceLocator();
+			//$this->serviceLocator = new \Zend\Di\ServiceLocator();
+		}
+		return self::$serviceLocator;
+	}
+	
+    
 }
