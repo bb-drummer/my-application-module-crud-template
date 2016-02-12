@@ -1,9 +1,9 @@
 {
   "name" : "BB/ZF2CRUDModule",
   "description" : "standard CRUD module template",
-  "version" : "1.0",
+  "version" : "0.0.1",
   "require" : {
-    "php" : ">=5.3.3",
+    "php" : ">=5.5",
     "zendframework/zendframework" : "dev-master",
     "zf-commons/zfc-user" : ">=1.2.2"
   },
