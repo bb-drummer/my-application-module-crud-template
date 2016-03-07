@@ -5,7 +5,7 @@
 
 This is a simple standard CRUD module template based upon ZF2's `zend-tool` created basic module structure. Just checkou from our GitLab and modify and/or extend it to your need
 
-More information and examples are available on the [Wiki](http://gitlab.dragon-projects.de:81/zf2/module-crud-template/wikis/home)
+More information and examples are available on the [Wiki](https://gitlab.bjoernbartels.earth/zf2/module-crud-template/wikis/home)
 
 
 
@@ -13,7 +13,7 @@ More information and examples are available on the [Wiki](http://gitlab.dragon-p
 
 * [php](http://php.net) (>= v5.4.40)
 * [Zend Framework 2](https://github.com/zendframework/zf2) (>= v2.4.0)
-* [ZF2BaseApp](http://gitlab.dragon-projects.de:81/zf2/application-base) (latest master).
+* [ZF2BaseApp](https://gitlab.bjoernbartels.earth/zf2/application-base) (latest master).
 * [ZFC-User](https://github.com/ZF-Commons/ZfcUser) (optional).
 
 
@@ -26,7 +26,7 @@ More information and examples are available on the [Wiki](http://gitlab.dragon-p
 
 ## Get started
 
-1. checkout from our GitLab (http://gitlab.dragon-projects.de:81/zf2/module-crud-template) ...
+1. checkout from our GitLab (https://gitlab.bjoernbartels.earth/zf2/module-crud-template) ...
 
 2. you maybe want to do a search/replace over all files replacing 'Yourmodname' and 'yourmodname' with actually your own module/table name (case-sensitive), rename files and folders accordingly...
 

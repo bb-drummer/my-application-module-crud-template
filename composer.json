@@ -1,5 +1,5 @@
 {
-  "name" : "BB/ZF2CRUDModule",
+  "name" : "my-application/module-crud-template",
   "description" : "standard CRUD module template",
   "version" : "0.0.1",
   "require" : {
@@ -26,10 +26,10 @@
     "post-update-cmd" : [ ]
   },
   "type" : "module",
-  "homepage" : "http://git.dragon-projects.de:81/zf2/module-crud-template.git",
+  "homepage" : "http://my-application.net",
   "authors" : [ {
     "name" : "Björn Bartels",
-    "email" : "bartels@dragon-projects.net",
-    "homepage" : "http://dragon-projects.net"
+    "email" : "development@bjoernbartels.earth",
+    "homepage" : "https://bjoernbartels.earth"
   } ]
 }
