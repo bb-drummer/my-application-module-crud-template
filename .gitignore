@@ -26,7 +26,7 @@ public/css/*/*
 *.local.php
 module/module-*
 module/Admin*
-module/TwitterBootstrapAPI*
+module/UIComponents*
 extras*
 
 
