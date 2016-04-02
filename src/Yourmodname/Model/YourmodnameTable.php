@@ -4,13 +4,13 @@
  * 
  * CRUD Module Template
  *
- * @package		[MyApplication]
- * @package		BB's Zend Framework 2 Components
- * @package		CRUD Module Template
- * @author		Björn Bartels <development@bjoernbartels.earth>
- * @link		https://gitlab.bjoernbartels.earth/groups/zf2
- * @license		http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @copyright	copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
+ * @package        [MyApplication]
+ * @package        BB's Zend Framework 2 Components
+ * @package        CRUD Module Template
+ * @author        Björn Bartels <development@bjoernbartels.earth>
+ * @link        https://gitlab.bjoernbartels.earth/groups/zf2
+ * @license        http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright    copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
  */
 
 namespace Yourmodname\Model;
@@ -26,8 +26,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class YourmodnameTable
 {
-	protected $userid = 0;
-	
+    protected $userid = 0;
+    
     protected $tableGateway;
     protected $serviceLocator;
     
@@ -40,19 +40,19 @@ class YourmodnameTable
 
     public function fetchAll()
     {
-    	$userid = $this->getUserid();
-		if ($userid == 0) {
-	    	$resultSet = $this->tableGateway->select(function (Select $select) {
-				$select->order($this->getDefaultOrder());
-			});
-		} else {
-		    $resultSet = $this->tableGateway->select(function (Select $select) {
-				$select->where(array(
-					'userid' => $this->getUserid(),
-				));
-				$select->order($this->getDefaultOrder());
-			});
-		}
+        $userid = $this->getUserid();
+        if ($userid == 0) {
+            $resultSet = $this->tableGateway->select(function (Select $select) {
+                $select->order($this->getDefaultOrder());
+            });
+        } else {
+            $resultSet = $this->tableGateway->select(function (Select $select) {
+                $select->where(array(
+                    'userid' => $this->getUserid(),
+                ));
+                $select->order($this->getDefaultOrder());
+            });
+        }
         return $resultSet;
     }
 
@@ -70,13 +70,13 @@ class YourmodnameTable
     public function saveItem(Yourmodname $yourmodname)
     {
         $data = array(
-            'col1'			=> $yourmodname->col1,
+            'col1'            => $yourmodname->col1,
             'extracolumn'   => $yourmodname->extracolumn,
 
-        	'col2'		    => $yourmodname->col2,
-            'col3'			=> $yourmodname->col3,
+            'col2'            => $yourmodname->col2,
+            'col3'            => $yourmodname->col3,
 
-            'userid'		=> $yourmodname->userid,
+            'userid'        => $yourmodname->userid,
         );
 
         $id = (int)$yourmodname->yourmodname_id;
@@ -96,70 +96,70 @@ class YourmodnameTable
         $this->tableGateway->delete(array('yourmodname_id' => $id));
     }
     
-	/**
-	 * set a user-id
-	 * @param INT $userid
-	 */
-	public function setUserid($userid) {
-		$this->userid = $userid;
-	}
+    /**
+     * set a user-id
+     * @param INT $userid
+     */
+    public function setUserid($userid) {
+        $this->userid = $userid;
+    }
     
     /**
-	 * @return the $userid
-	 */
-	public function getUserid() {
-		return $this->userid;
-	}
+     * @return the $userid
+     */
+    public function getUserid() {
+        return $this->userid;
+    }
 
-	/**
-	 * @return ARRAY suitable for Zend/Form/Select options
-	 */
-	public function getSelectOptions() {
-		$yourmodname = $this->fetchAll();
-		$aYourmodname = array();
-		foreach ($yourmodname as $item) {
-			$aYourmodname[$item->yourmodname_id] = $item->col1 . (!empty($item->extracolumn) ? ", " . $item->extracolumn : "");
-		}
-		return $aYourmodname;
-	}
+    /**
+     * @return ARRAY suitable for Zend/Form/Select options
+     */
+    public function getSelectOptions() {
+        $yourmodname = $this->fetchAll();
+        $aYourmodname = array();
+        foreach ($yourmodname as $item) {
+            $aYourmodname[$item->yourmodname_id] = $item->col1 . (!empty($item->extracolumn) ? ", " . $item->extracolumn : "");
+        }
+        return $aYourmodname;
+    }
 
-	/**
-	 * Set serviceManager instance
-	 *
-	 * @param  ServiceLocatorInterface $serviceLocator
-	 * @return void
-	 */
-	public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
-	{
-		$this->serviceLocator = $serviceLocator;
-		return $this;
-	}
-	
-	/**
-	 * Retrieve serviceManager instance
-	 *
-	 * @return ServiceLocatorInterface
-	 */
-	public function getServiceLocator()
-	{
-		if (!$this->serviceLocator) {
-			$this->serviceLocator = new \Zend\Di\ServiceLocator();
-		}
-		return $this->serviceLocator;
-	}
-	
-	/**
-	 * @return the $defaultOrder
-	 */
-	public function getDefaultOrder() {
-		return $this->defaultOrder;
-	}
-	
-	/**
-	 * @param string $defaultOrder
-	 */
-	public function setDefaultOrder($defaultOrder) {
-		$this->defaultOrder = $defaultOrder;
-	}
-	
+    /**
+     * Set serviceManager instance
+     *
+     * @param  ServiceLocatorInterface $serviceLocator
+     * @return void
+     */
+    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+        return $this;
+    }
+    
+    /**
+     * Retrieve serviceManager instance
+     *
+     * @return ServiceLocatorInterface
+     */
+    public function getServiceLocator()
+    {
+        if (!$this->serviceLocator) {
+            $this->serviceLocator = new \Zend\Di\ServiceLocator();
+        }
+        return $this->serviceLocator;
+    }
+    
+    /**
+     * @return the $defaultOrder
+     */
+    public function getDefaultOrder() {
+        return $this->defaultOrder;
+    }
+    
+    /**
+     * @param string $defaultOrder
+     */
+    public function setDefaultOrder($defaultOrder) {
+        $this->defaultOrder = $defaultOrder;
+    }
+    
 }

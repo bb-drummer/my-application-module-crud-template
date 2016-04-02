@@ -9,33 +9,33 @@
 </div>
 
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<label>
-			<span class="panel-title"><?php echo $this->translate("Daten bearbeiten"); ?></span>
-		</label>
-	</div>
-	<div class="panel-body">
-		
-		<table class="table">
-			<tr>
-			    <th><?php echo $this->translate("col1")?></th>
-			    <th><?php echo $this->translate("col2")?></th>
-			    <th><?php echo $this->translate("col3")?></th>
-			    <th>&nbsp;</th>
-			</tr>
-			<?php foreach ($yourmodnamedata as $yourmodname) : ?>
-			<tr>
-			    <td><?php echo $this->escapeHtml($yourmodname->col1);?>, <?php echo $this->escapeHtml($yourmodname->extracolumn);?></td>
-			    <td><?php echo $this->escapeHtml($yourmodname->col2);?></td>
-			    <td><?php echo $this->escapeHtml($yourmodname->col3);?></td>
-			    <td>
-			        <a href="<?php echo $this->url('yourmodname/yourmodnameedit', array('action'=>'details', 'yourmodname_id' => $yourmodname->yourmodname_id));?>"><?php echo $this->translate("anzeigen"); ?></a>
-			   		<a href="<?php echo $this->url('yourmodname/yourmodnameedit', array('action'=>'edit', 'yourmodname_id' => $yourmodname->yourmodname_id));?>"><?php echo $this->translate("ändern"); ?></a>
-			    	<a href="<?php echo $this->url('yourmodname/yourmodnameedit', array('action'=>'delete', 'yourmodname_id' => $yourmodname->yourmodname_id));?>"><?php echo $this->translate("entfernen"); ?></a>
-			    </td>
-			</tr>
-			<?php endforeach; ?>
-		</table>
-	<?php echo $this->output ?>
-	</div>
+    <div class="panel-heading">
+        <label>
+            <span class="panel-title"><?php echo $this->translate("Daten bearbeiten"); ?></span>
+        </label>
+    </div>
+    <div class="panel-body">
+        
+        <table class="table">
+            <tr>
+                <th><?php echo $this->translate("col1")?></th>
+                <th><?php echo $this->translate("col2")?></th>
+                <th><?php echo $this->translate("col3")?></th>
+                <th>&nbsp;</th>
+            </tr>
+            <?php foreach ($yourmodnamedata as $yourmodname) : ?>
+            <tr>
+                <td><?php echo $this->escapeHtml($yourmodname->col1);?>, <?php echo $this->escapeHtml($yourmodname->extracolumn);?></td>
+                <td><?php echo $this->escapeHtml($yourmodname->col2);?></td>
+                <td><?php echo $this->escapeHtml($yourmodname->col3);?></td>
+                <td>
+                    <a href="<?php echo $this->url('yourmodname/yourmodnameedit', array('action'=>'details', 'yourmodname_id' => $yourmodname->yourmodname_id));?>"><?php echo $this->translate("anzeigen"); ?></a>
+                       <a href="<?php echo $this->url('yourmodname/yourmodnameedit', array('action'=>'edit', 'yourmodname_id' => $yourmodname->yourmodname_id));?>"><?php echo $this->translate("ändern"); ?></a>
+                    <a href="<?php echo $this->url('yourmodname/yourmodnameedit', array('action'=>'delete', 'yourmodname_id' => $yourmodname->yourmodname_id));?>"><?php echo $this->translate("entfernen"); ?></a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php echo $this->output ?>
+    </div>
 </div>

@@ -4,13 +4,13 @@
  * 
  * CRUD Module Template
  *
- * @package		[MyApplication]
- * @package		BB's Zend Framework 2 Components
- * @package		CRUD Module Template
- * @author		Björn Bartels <development@bjoernbartels.earth>
- * @link		https://gitlab.bjoernbartels.earth/groups/zf2
- * @license		http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @copyright	copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
+ * @package        [MyApplication]
+ * @package        BB's Zend Framework 2 Components
+ * @package        CRUD Module Template
+ * @author        Björn Bartels <development@bjoernbartels.earth>
+ * @link        https://gitlab.bjoernbartels.earth/groups/zf2
+ * @license        http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @copyright    copyright (c) 2016 Björn Bartels <development@bjoernbartels.earth>
  */
 
 namespace Yourmodname\Model;
@@ -40,14 +40,14 @@ class Yourmodname implements InputFilterAwareInterface
     
     public function exchangeArray($data)
     {
-        $this->yourmodname_id	= (isset($data['yourmodname_id'])) ?    $data['yourmodname_id'] : null;
+        $this->yourmodname_id    = (isset($data['yourmodname_id'])) ?    $data['yourmodname_id'] : null;
         $this->col1             = (isset($data['col1'])) ?              $data['col1'] : null;
         $this->extracolumn      = (isset($data['extracolumn'])) ?       $data['extracolumn'] : null;
 
-        $this->col2		        = (isset($data['col2'])) ?		        $data['col2'] : null;
-        $this->col3		        = (isset($data['col3'])) ?			    $data['col3'] : null;
+        $this->col2                = (isset($data['col2'])) ?                $data['col2'] : null;
+        $this->col3                = (isset($data['col3'])) ?                $data['col3'] : null;
 
-        $this->userid		    = (isset($data['userid'])) ?            $data['userid'] : null;
+        $this->userid            = (isset($data['userid'])) ?            $data['userid'] : null;
     }
 
     public function getArrayCopy()
@@ -112,22 +112,22 @@ class Yourmodname implements InputFilterAwareInterface
             )));
 
             $inputFilter->add($factory->createInput(array(
-            	'name'     => 'col2',
-            	'required' => false,
-           		'filters'  => array(
-          			array('name' => 'StripTags'),
-            		array('name' => 'StringTrim'),
-            	),
-            	'validators' => array(
-            		array(
-         				'name'    => 'StringLength',
-           				'options' => array(
-           					'encoding' => 'UTF-8',
-            				'min'      => 1,
-            				'max'      => 255,
-            			),
-          			),
-            	),
+                'name'     => 'col2',
+                'required' => false,
+                   'filters'  => array(
+                      array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                         'name'    => 'StringLength',
+                           'options' => array(
+                               'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 255,
+                        ),
+                      ),
+                ),
             )));
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'col3',
